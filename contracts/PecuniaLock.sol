@@ -13,7 +13,9 @@ import "./mock/HeirToken.sol";
 
 contract PecuniaLock is Context, IERC721Receiver, KeeperCompatibleInterface {
     using Counters for Counters.Counter;
-// Observed gas is 92k + 8k buffer
+    //include enum for will state
+
+    // Observed gas is 92k + 8k buffer
     uint256 private constant MIN_GAS_FOR_TRANSFER = 100_000;
 
     uint256 public gb;
@@ -70,6 +72,8 @@ contract PecuniaLock is Context, IERC721Receiver, KeeperCompatibleInterface {
 
     mapping(uint256 => bool) public usedProof;
 
+    mapping(uint256 => bool) public isHeirTokenValid;
+
     constructor() {
         verifier = new Verifier();
         heirToken = new HeirToken();
@@ -88,20 +92,6 @@ contract PecuniaLock is Context, IERC721Receiver, KeeperCompatibleInterface {
     //         bals[i] = box.balance[tokenAddr];
     //     }
     // }
-
-    /**
-     * @notice Check if heir is registered in the will
-     * @param boxhash the hash of box
-     * @param heir address of heir
-     * @return bool value
-     */
-    function heirIsValid(bytes32 boxhash, address heir)
-        public
-        view
-        returns (bool)
-    {
-        return boxhash2safebox[boxhash].heirToBalance[heir] > 0;
-    }
 
     /**
      * @notice Register the user
@@ -319,10 +309,6 @@ contract PecuniaLock is Context, IERC721Receiver, KeeperCompatibleInterface {
             keccak256(abi.encodePacked(pswHash, boxOwner)) == boxhash,
             "PecuniaLock::withdrawSignature: pswHash error"
         );
-        require(
-            heirIsValid(boxhash, heir),
-            "PecuniaLock::withdrawSignature: heir not valid"
-        );
 
         SafeBox storage box = boxhash2safebox[boxhash];
         require(
@@ -331,8 +317,13 @@ contract PecuniaLock is Context, IERC721Receiver, KeeperCompatibleInterface {
         );
 
         require(
+            box.heirToTokenid[heir] > 0,
+            "PecuniaLock::withdrawSignature: Heir not valid"
+        );
+
+        require(
             box.isActive[heir],
-            "PecuniaLock::withdrawSignature: Heir has already taken amount"
+            "PecuniaLock::withdrawSignature: Heir has already taken amount or will is canceled"
         );
 
         uint256 amount = box.heirToBalance[heir];
@@ -359,6 +350,52 @@ contract PecuniaLock is Context, IERC721Receiver, KeeperCompatibleInterface {
 
         box.withdrawSigned[heir] = true;
         emit WithdrawSigned(box.user, heir, amount);
+    }
+
+    /**
+     * @notice cancels the will and transfer all the assets back to owner
+     * @param boxOwner address of box owner
+     */
+    function cancelBoxAndTransferFundsToOwner(address boxOwner) external {
+        require(
+            msg.sender == boxOwner,
+            "PecuniaLock::cancelBoxAndTransferFundsToOwner: only owner can assign funds to heirs"
+        );
+        bytes32 boxhash = user2boxhash[boxOwner];
+        require(
+            boxhash != bytes32(0),
+            "PecuniaLock::cancelBoxAndTransferFundsToOwner: safebox not register yet"
+        );
+        SafeBox storage box = boxhash2safebox[boxhash];
+        address[] memory heirAddresses = box.addresss;
+        for (uint256 i = 0; i < heirAddresses.length; i++) {
+            if (box.isActive[heirAddresses[i]]) {
+                if (box.heirToBalance[heirAddresses[i]] > 0) {
+                    bool success = payable(boxOwner).send(
+                        box.heirToBalance[heirAddresses[i]]
+                    );
+                    if (success) {
+                        box.heirToBalance[heirAddresses[i]] = 0;
+                        console.log("Funds Transferred back to owner");
+                    }
+                }
+                if (box.heirToNfts[heirAddresses[i]].length > 0) {
+                    for (
+                        uint256 j = 0;
+                        j < box.heirToNfts[heirAddresses[i]].length;
+                        j++
+                    ) {
+                        IERC721(box.nftAddress).safeTransferFrom(
+                            address(this),
+                            boxOwner,
+                            box.heirToNfts[heirAddresses[i]][j]
+                        );
+                        console.log("Owner NFTs trasnffered back to owner");
+                    }
+                }
+                box.isActive[heirAddresses[i]] = false;
+            }
+        }
     }
 
     // Chainlink Keeper Functions

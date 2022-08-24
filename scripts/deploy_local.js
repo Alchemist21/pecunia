@@ -48,6 +48,11 @@ async function main() {
     // console.log(tokenId)
     await printBalances(owner, pecunia_lock, heir)
     await printNftOwner(owner_token, onft_tokenId, "owner nft") 
+
+	const cancel_txn = await pecunia_lock.connect(owner).cancelBoxAndTransferFundsToOwner(owner.address);
+	await printBalances(owner, pecunia_lock, heir)
+    await printNftOwner(owner_token, onft_tokenId, "owner nft") 
+
 	
 	await approveNFT(heir_token, heir, pecunia_lock.address, s(1))
 	let p2 = await getProof(psw, s(amountToHeir), owner)
@@ -56,15 +61,15 @@ async function main() {
     await printBalances(owner, pecunia_lock, heir)
     await printNftOwner(owner_token, onft_tokenId, "owner nft") 
 
-    const t_boxHashes = await pecunia_lock.getMaturedBoxes()
-    console.log(`getMaturedBoxes: boxHashes`)
-    console.log(t_boxHashes)
-    const txn = await pecunia_lock.transferAmountToHeirs(t_boxHashes);
-    await printBalances(owner, pecunia_lock, heir)
-    await printNftOwner(owner_token, onft_tokenId, "owner nft")
-	const tt_boxHashes = await pecunia_lock.getMaturedBoxes()
-    console.log(`NEW getMaturedBoxes: boxHashes`)
-	console.log(tt_boxHashes)
+    // const t_boxHashes = await pecunia_lock.getMaturedBoxes()
+    // console.log(`getMaturedBoxes: boxHashes`)
+    // console.log(t_boxHashes)
+    // const txn = await pecunia_lock.transferAmountToHeirs(t_boxHashes);
+    // await printBalances(owner, pecunia_lock, heir)
+    // await printNftOwner(owner_token, onft_tokenId, "owner nft")
+	// const tt_boxHashes = await pecunia_lock.getMaturedBoxes()
+    // console.log(`NEW getMaturedBoxes: boxHashes`)
+	// console.log(tt_boxHashes)
 }
 
 function stringToHex(string) {
