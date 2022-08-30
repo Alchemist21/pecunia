@@ -49,7 +49,7 @@ async function main() {
     await printBalances(owner, pecunia_lock, heir)
     await printNftOwner(owner_token, onft_tokenId, "owner nft") 
 
-	const cancel_txn = await pecunia_lock.connect(owner).cancelBoxAndTransferFundsToOwner(owner.address);
+	const cancel_txn = await pecunia_lock.connect(owner).cancelBoxAndTransferFundsToOwner();
 	await printBalances(owner, pecunia_lock, heir)
     await printNftOwner(owner_token, onft_tokenId, "owner nft") 
 
