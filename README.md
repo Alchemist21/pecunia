@@ -2,7 +2,7 @@
 
 ![](./pecunia.jpeg)
 
-Pecunia ensures clients safe and secure estate planning for cryptocurrency and NFTs.
+Pecunia ensures safe and secure estate planning for cryptocurrency and NFTs.
 
 # Architecture:
 
