@@ -3,7 +3,7 @@
 <br/>
 <p align="center">
 <a href="" target="">
-<img src="https://github.com/rishotics/battle-arena/blob/develop/Logo.jpeg" width="225" alt="Pecunia">
+<img src="https://github.com/Alchemist21/pecunia/blob/main/pecunia.jpeg" width="225" alt="Pecunia">
 </a>
 </p>
 <br/>
