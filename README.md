@@ -55,7 +55,7 @@ PecuniaLock.sol: [0x45C38Ce5dDd5b34f2da4674cA0C3FeD18FB54dbb] (https://mumbai.po
 
 ## Inspiration
 
-Currently, there is no proper way to transfer crypto to the heirs or next of kin. So pecunia offer a safe way to do it.
+Currently, there is no proper way to transfer crypto to the heirs or next of kin. So pecunia offers a safe and secure way using ZK Snarks.
 
 ## TODO/Areas For Improvement
 - We will integrate DEXs which will allow the user to swap and deposit any token into his will by just depositing MATIC.
