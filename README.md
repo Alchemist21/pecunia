@@ -1,14 +1,8 @@
 # Pecunia
 
-<br/>
-<p align="center">
-<a href="" target="">
-<img src="https://github.com/Alchemist21/pecunia/blob/main/pecunia.jpeg" width="225" alt="Pecunia">
-</a>
-</p>
-<br/>
+![](./pecunia.jpeg)
 
-Pecunia enables safe and secure cryptocurrency estate planning using ZK Snarks and Chainlink Keepers
+Pecunia provides clients the ability to ensure that their heirs will be able to get their share of the crypto and NFT once the client dies.
 # Architecture:
 
 
