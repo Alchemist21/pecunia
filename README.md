@@ -2,7 +2,8 @@
 
 ![](./pecunia.jpeg)
 
-Pecunia provides clients the ability to ensure that their heirs will be able to get their share of the crypto and NFT once the client dies.
+Pecunia ensures clients safe and secure estate planning for cryptocurrency and NFTs.
+
 # Architecture:
 
 
@@ -20,7 +21,7 @@ ZK Proof are generated at two situations, first when the owner registers and the
 
 ## Front End: 
 
-The front of the Dapp is built using React and Ether.js helped us so much with communicating with our smart contract.
+The front end was built using React and Ether.js.
 
 
 ## Tech Stack
