@@ -1,5 +1,13 @@
 # Pecunia
 
+<br/>
+<p align="center">
+<a href="" target="">
+<img src="https://github.com/rishotics/battle-arena/blob/develop/Logo.jpeg" width="225" alt="Pecunia">
+</a>
+</p>
+<br/>
+
 Pecunia enables safe and secure cryptocurrency estate planning using ZK Snarks and Chainlink Keepers
 # Architecture:
 
