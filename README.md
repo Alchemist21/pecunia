@@ -68,4 +68,4 @@ The Repository is currently not audited and is only meant for testing purposes o
 
 ## Contact
 
-Email is at pecuniaxyz@gmail.com 
+Email us at pecuniaxyz@gmail.com 
