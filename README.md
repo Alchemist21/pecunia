@@ -64,7 +64,7 @@ Currently, there is no proper way to transfer crypto to the heirs or next of kin
 
 ## Security Considerations
 
-The Repository is currently not audited and is only meant for testing purposes on Testnets. Try us at https://spheron.infura-ipfs.io/ipfs/QmPm2NaptMKeaTgyzqbgSUkM32omZNnXRqYbbFwkmNJGau/
+The Repository is currently not audited and is only meant for testing purposes on Testnets. Try us at https://spheron.infura-ipfs.io/ipfs/QmNXar4exH4X9ULxXd1KikFsV5FiviNeTsTRoEwfCnzY4f/
 
 ## Contact
 
