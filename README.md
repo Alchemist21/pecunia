@@ -19,6 +19,8 @@ We have used Circom & snarkjs(groth16) to develop the circuits and creating the 
 
 ZK Proof are generated at two situations, first when the owner registers and the second time when the heir signs the `WithdrawSignature`. The proof is unique everytime it is generated but we are checking its uniqueness in our smart contracts to prevent used proof. The trusted setup is performed and the files generated are uploaded(though they should not be).
 
+## Currently, the death API in the United States requires monetary consideration and we are given the assumption that the person died. However given enough funds we will also integrate the death API which then triggers the Chainlink Keepers.
+
 ## Front End: 
 
 The front end was built using React and Ether.js.
@@ -61,6 +63,8 @@ Currently, there is no proper way to transfer crypto to the heirs or next of kin
 - We will integrate DEXs which will allow the user to swap and deposit any token into his will by just depositing MATIC.
 - We will be integrating functionality to deposit funds to different liquidity pools which will earn interest from the funds and including provision for dynamic NFTs(containing the real time balances that will be transferred to heir)
 - We will introduce batch pay which will allow the transfer of funds to heir at multiple intervals. This will prevent the heir to carelessly spend all the funds at one go.
+
+
 
 ## Security Considerations
 
