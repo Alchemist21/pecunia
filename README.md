@@ -21,7 +21,7 @@ ZK Proof are generated at two situations, first when the owner registers and the
 
 ## Death API
 
-Currently, the death API in the United States requires monetary consideration and we are given the assumption that the person died. However given enough funds we will also integrate the death API which then triggers the Chainlink Keepers to give the funds.
+Currently, the death API in the United States requires monetary consideration so for this project, we are given the assumption that the person died. However given enough funds we will also integrate the death API which then triggers the Chainlink Keepers to give the funds.
 
 ## Front End: 
 
