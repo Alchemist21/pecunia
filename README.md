@@ -19,6 +19,8 @@ We have used Circom & snarkjs(groth16) to develop the circuits and creating the 
 
 ZK Proof are generated at two situations, first when the owner registers and the second time when the heir signs the `WithdrawSignature`. The proof is unique everytime it is generated but we are checking its uniqueness in our smart contracts to prevent used proof. The trusted setup is performed and the files generated are uploaded(though they should not be).
 
+## Death API
+
 Currently, the death API in the United States requires monetary consideration and we are given the assumption that the person died. However given enough funds we will also integrate the death API which then triggers the Chainlink Keepers to give the funds.
 
 ## Front End: 
